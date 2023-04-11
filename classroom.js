@@ -5,7 +5,7 @@ class ClassRoom{
     }
 
     addStudent(student){
-        
+        this.students.push(student);
     }
 
     addStudentName(student){
@@ -29,15 +29,24 @@ class ClassRoom{
         }
     }
 
-    // removeStudent(student){
+    removeStudent(student){
+        const index = this.students.indexOf(student);
+        if (index >= 0) {
+            this.students.splice(index, 1);
+        }
 
+    }
 
-    // }
-
-    // shuffleStudents(){
-
-
-        
-    // }
+    shuffleStudents(){
+        const tempArray = [];
+        while (this.students.length > 0) {
+            const randomNumber = Math.random() * this.students.length;
+            const randomIndex = Math.floor(randomNumber);
+            const arrayOfDeleted = this.students.splice(randomIndex, 1);
+            const randomStudent = arrayOfDeleted[0];
+            tempArray.push(randomStudent);
+        }
+        this.students = tempArray;
+    }
 
 }

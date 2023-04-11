@@ -4,8 +4,5 @@ class Student{
         this.name = name;
         this.surname = surname;
     }
-
-    toString(){
-        return `${this.name}\n${this.surname}\n`
-    }
+//xdxdxd
 }

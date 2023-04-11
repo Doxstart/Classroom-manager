@@ -5,33 +5,58 @@
 // 4) aggiunta della data di nascita dello studente
 // 5) se è il compleanno dello studente il suo nome sarà scritto in modo evidenziato
 
-const student1 = new Student('Simone', 'Maccarone');
+const student1 = new Student('Simone', 'Maccarone'); //istanziare un oggetto (definire una variabile)
 const student2 = new Student('Luis Alberto', 'Castro');
 const student3 = new Student('Davide', 'Consigliere');
 const student4 = new Student('Francesco', 'Badile');
 
-const classroom1 = new ClassRoom([student1, student2, student3, student4]);
+const arrayOfStudents = [student1, student2, student3, student4];
+
+const classroom1 = new ClassRoom(arrayOfStudents);
 
 
 function displayClassroom(classroom){
-    const classroomStudents= classroom.students
-    for (let i = 0; i < classroomStudents.length; i++) {
-        const element = classroomStudents[i];
-        const studentList = document.getElementById('student-list')
-        const newLi = document.createElement('li')
-        const text = document.createTextNode(element.toString())
-        newLi.appendChild(text)
-        studentList.appendChild(newLi)
+    const studentList = document.getElementById('student-list');
+    studentList.innerHTML = '';
+    for (let i = 0; i < classroom.students.length; i++) {
+        const student = classroom.students[i];
+        const newLi = document.createElement('li');
+        const studentNode = document.createTextNode(student.surname + ' ' + student.name);
+        newLi.appendChild(studentNode);
+        const deleteBtn = document.createElement('button');
+        const btnNode = document.createTextNode('elimina-studente');
+        deleteBtn.addEventListener('click', (event) => removeStudentFromClassroom(student));
+        deleteBtn.appendChild(btnNode);
+        newLi.appendChild(deleteBtn);
+        studentList.appendChild(newLi);
     }
 }
 
 displayClassroom(classroom1)
 
-// function shuffleTheClassroom(){
+function shuffleTheClassroom(){
+    classroom1.shuffleStudents();
+    displayClassroom(classroom1);
+}
 
-// }
+function addStudentToClassroom(){
+    const nameInput = document.getElementById('name-input');
+    const surnameInput = document.getElementById('surname-input');
+    const name = nameInput.value;
+    const surname = surnameInput.value;
+    if (name !== '' && surname !== '') {
+        const newStudent = new Student(name, surname);
+        classroom1.addStudent(newStudent);
+        displayClassroom(classroom1);
+    }   
+}
 
-// function addStudentToClassroom(){
+function removeStudentFromClassroom(student){
+    classroom1.removeStudent(student);
+    displayClassroom(classroom1);
+}
 
-// }
-
+function colorMainTitle() {
+    const mainTitle = document.querySelector('.main-title');
+    mainTitle.style.color = 'red';
+}
