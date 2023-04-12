@@ -18,7 +18,6 @@ class ClassRoom{
         }
     }
     
-
     addStudentSurname(student){
         const input = document.getElementById('input-cognome');
         if (input.value !== '') {
@@ -34,7 +33,6 @@ class ClassRoom{
         if (index >= 0) {
             this.students.splice(index, 1);
         }
-
     }
 
     shuffleStudents(){
@@ -48,5 +46,4 @@ class ClassRoom{
         }
         this.students = tempArray;
     }
-
 }

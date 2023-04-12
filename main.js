@@ -14,23 +14,34 @@ const arrayOfStudents = [student1, student2, student3, student4];
 
 const classroom1 = new ClassRoom(arrayOfStudents);
 
-
-function displayClassroom(classroom){
+function diplayClassroom(classroom){
     const studentList = document.getElementById('student-list');
-    studentList.innerHTML = '';
-    for (let i = 0; i < classroom.students.length; i++) {
-        const student = classroom.students[i];
-        const newLi = document.createElement('li');
-        const studentNode = document.createTextNode(student.surname + ' ' + student.name);
-        newLi.appendChild(studentNode);
-        const deleteBtn = document.createElement('button');
-        const btnNode = document.createTextNode('elimina-studente');
-        deleteBtn.addEventListener('click', (event) => removeStudentFromClassroom(student));
-        deleteBtn.appendChild(btnNode);
-        newLi.appendChild(deleteBtn);
-        studentList.appendChild(newLi);
-    }
+
+    studentList.innerHTML = ``;
+
+        for (let i = 0; i < classroom.students; i++) {
+            const student = classroom.students[i];
+            studentList.innerHTML += `<li class="list-element">${student.name} ${student.surname}<button>cancella</button></li>` 
+        }
 }
+
+
+// function displayClassroom(classroom){
+//     const studentList = document.getElementById('student-list');
+//     studentList.innerHTML = '';
+//     for (let i = 0; i < classroom.students.length; i++) {
+//         const student = classroom.students[i];
+//         const newLi = document.createElement('li');
+//         const studentNode = document.createTextNode(student.surname + ' ' + student.name);
+//         newLi.appendChild(studentNode);
+//         const deleteBtn = document.createElement('button');
+//         const btnNode = document.createTextNode('elimina-studente');
+//         deleteBtn.addEventListener('click', (event) => removeStudentFromClassroom(student));
+//         deleteBtn.appendChild(btnNode);
+//         newLi.appendChild(deleteBtn);
+//         studentList.appendChild(newLi);
+//     }
+// }
 
 displayClassroom(classroom1)
 
